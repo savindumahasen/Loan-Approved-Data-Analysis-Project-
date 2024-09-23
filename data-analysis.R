@@ -22,3 +22,7 @@ attach(data)
 ## View the dataset again
 
 View(data)
+
+## check the null values of the dataset
+
+data[!complete.cases(data),]
