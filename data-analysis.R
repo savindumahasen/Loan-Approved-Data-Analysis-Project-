@@ -26,3 +26,11 @@ View(data)
 ## check the null values of the dataset
 
 data[!complete.cases(data),]
+
+## Preparing the dataset (Preprocessing)
+
+## install the plyr package 
+install.packages('plyr')
+
+## call the plyr library
+library('plyr')
