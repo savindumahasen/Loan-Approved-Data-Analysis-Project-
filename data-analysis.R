@@ -46,3 +46,5 @@ data$MaritalStatus <- revalue(MaritalStatus, c(Married=1,Single=2,Divorced=3,Wid
 data$MaritalStatus
 data$HomeOwnershipStatus <- revalue(HomeOwnershipStatus, c(Own=1,Mortgage=2,Rent=3, Other=4))
 data$HomeOwnershipStatus
+data$LoanPurpose <- revalue(LoanPurpose, c(Home=1,DebtConsolidation=2, Education=3, Other=4,Auto=5))
+data$LoanPurpose
