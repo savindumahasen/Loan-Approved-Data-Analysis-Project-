@@ -44,3 +44,5 @@ data$EducationLevel <- revalue(EducationLevel, c(Master=1, Associate=2, Bachelor
 data$EducationLevel
 data$MaritalStatus <- revalue(MaritalStatus, c(Married=1,Single=2,Divorced=3,Widowed=4))
 data$MaritalStatus
+data$HomeOwnershipStatus <- revalue(HomeOwnershipStatus, c(Own=1,Mortgage=2,Rent=3, Other=4))
+data$HomeOwnershipStatus
