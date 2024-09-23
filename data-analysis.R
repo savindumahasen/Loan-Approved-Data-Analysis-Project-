@@ -14,3 +14,7 @@ str(data)
 ## summary
 
 summary(data)
+
+## attach the dataset with environment
+
+attach(data)
