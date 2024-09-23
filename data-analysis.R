@@ -48,3 +48,9 @@ data$HomeOwnershipStatus <- revalue(HomeOwnershipStatus, c(Own=1,Mortgage=2,Rent
 data$HomeOwnershipStatus
 data$LoanPurpose <- revalue(LoanPurpose, c(Home=1,DebtConsolidation=2, Education=3, Other=4,Auto=5))
 data$LoanPurpose
+
+## Normality testing
+## install the nortest package
+install.packages("nortest")
+## call the library
+library("nortest")
