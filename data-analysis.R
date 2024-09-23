@@ -10,3 +10,7 @@ View(data)
 ## check the data types of the dataset
 
 str(data)
+
+## summary
+
+summary(data)
