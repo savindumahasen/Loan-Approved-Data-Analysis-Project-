@@ -18,3 +18,7 @@ summary(data)
 ## attach the dataset with environment
 
 attach(data)
+
+## View the dataset again
+
+View(data)
