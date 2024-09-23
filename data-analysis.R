@@ -10,6 +10,8 @@ View(data)
 ## check the data types of the dataset
 
 str(data)
+## 
+head(data)
 
 ## summary
 
@@ -34,3 +36,11 @@ install.packages('plyr')
 
 ## call the plyr library
 library('plyr')
+
+## convert the catgerical text values into the numerical values
+data$EmploymentStatus <- revalue(EmploymentStatus,c(Employed=1,SelfEmployed=3,Unemployed=3))
+data$EmploymentStatus
+data$EducationLevel <- revalue(EducationLevel, c(Master=1, Associate=2, Bachelor=3,HighSchool=4,Doctorate=5))
+data$EducationLevel
+data$MaritalStatus <- revalue(MaritalStatus, c(Married=1,Single=2,Divorced=3,Widowed=4))
+data$MaritalStatus
