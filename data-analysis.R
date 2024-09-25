@@ -61,6 +61,9 @@ View(data_new)
 ## check the data types  and number of objects
 str(data_new)
 
+## Summary statistics of the dataset
+summary(data_new)
+
 ## Normality testing
 ## install the nortest package
 install.packages("nortest")
