@@ -55,6 +55,9 @@ write.csv(data,"data_new.csv")
 ## Load the new dataset
 data_new <- read.csv("data_new.csv")
 
+## View the  new datset
+View(data_new)
+
 ## Normality testing
 ## install the nortest package
 install.packages("nortest")
