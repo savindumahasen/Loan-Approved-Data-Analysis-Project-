@@ -52,6 +52,9 @@ data$LoanPurpose
 ## writing the modified dataset into the new csv file
 write.csv(data,"data_new.csv")
 
+## Load the new dataset
+data_new <- read.csv("data_new.csv")
+
 ## Normality testing
 ## install the nortest package
 install.packages("nortest")
