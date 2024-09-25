@@ -64,6 +64,11 @@ str(data_new)
 ## Summary statistics of the dataset
 summary(data_new)
 
+## detach existing dataset
+detach(data)
+
+## Attach the updated dataset with enviornment
+attach(data_new)
 ## Normality testing
 ## install the nortest package
 install.packages("nortest")
