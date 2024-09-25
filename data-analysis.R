@@ -49,8 +49,34 @@ data$HomeOwnershipStatus
 data$LoanPurpose <- revalue(LoanPurpose, c(Home=1,DebtConsolidation=2, Education=3, Other=4,Auto=5))
 data$LoanPurpose
 
+## writing the modified dataset into the new csv file
+write.csv(data,"data_new.csv")
+
 ## Normality testing
 ## install the nortest package
 install.packages("nortest")
 ## call the library
 library("nortest")
+## Loan Approved
+ad.test(LoanApproved)
+lillie.test(LoanApproved)
+shapiro.test(LoanApproved)
+
+## Age
+ad.test(Age)
+lillie.test(Age)
+shapiro.test(Age)
+
+## Annual Income
+ad.test(AnnualIncome)
+lillie.test(AnnualIncome)
+shapiro.test(AnnualIncome)
+
+## Credit Sore
+ad.test(CreditScore)
+lillie.test(CreditScore)
+shapiro.test(CreditScore)
+
+## Employment Status
+ad.test(data$EmploymentStatus)
+lillie.test(EmploymentStatus)
