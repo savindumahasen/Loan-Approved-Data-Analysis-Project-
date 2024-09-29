@@ -696,4 +696,48 @@ scatterplot(LoanApproved~RiskScore, regLine=TRUE, smooth=FALSE,
             main="LoanApproved Vs RiskScore  Scatterplot", data=data_new)
 
 
+## RandomForest Classifier Model
+
+install.packages('randomForest')
+
+## call the randomForest library
+
+# Load necessary library
+library(randomForest)
+
+# Assuming your dataset 'loan_data' has been loaded and the Random Forest model is trained
+# and includes the target variable 'ApprovalStatus'
+
+# Ensure the target variable 'ApprovalStatus' is binary and a factor
+data_new$LoanApproved <- as.factor(data_new$LoanApproved)
+
+# Build the Random Forest model using the full dataset
+rf_model <- randomForest(LoanApproved ~ LoanAmount + MonthlyIncome + InterestRate + 
+                           MonthlyLoanPayment + TotalDebtToIncomeRatio + RiskScore, 
+                         data=data_new, ntree=100)
+
+## summary statistics
+summary(rf_model)
+
+# Now let's predict with sample data
+
+# Create a sample data frame for prediction (without the target column)
+sample_data <- data.frame(
+  LoanAmount = 9184,        # Example loan amounts
+  MonthlyIncome =8605.333,      # Example monthly incomes
+  InterestRate = 0.1759902,          # Example interest rates
+  MonthlyLoanPayment = 330.1791,    # Example monthly loan payments
+  TotalDebtToIncomeRatio =0.0702098,  # Example debt-to-income ratios
+  RiskScore = 36.0              # Example risk scores
+)
+
+# Make predictions on the sample data
+sample_predictions <- predict(rf_model, newdata=sample_data)
+if (sample_predictions[1]==1) {
+  print("1")
+} else {
+  print("0")
+}
+
+
 
