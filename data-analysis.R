@@ -705,10 +705,7 @@ install.packages('randomForest')
 # Load necessary library
 library(randomForest)
 
-# Assuming your dataset 'loan_data' has been loaded and the Random Forest model is trained
-# and includes the target variable 'ApprovalStatus'
-
-# Ensure the target variable 'ApprovalStatus' is binary and a factor
+# Ensure the target variable 'LoanApproved' is binary and a factor
 data_new$LoanApproved <- as.factor(data_new$LoanApproved)
 
 # Build the Random Forest model using the full dataset
@@ -733,7 +730,7 @@ sample_data <- data.frame(
 
 # Make predictions on the sample data
 sample_predictions <- predict(rf_model, newdata=sample_data)
-sample_predictions
+print(sample_predictions)
 if (sample_predictions[1]==1) {
   print("Loan Approved")
 } else {
