@@ -740,6 +740,9 @@ if (sample_predictions[1]==1) {
 
 ## install the shiny package
 install.packages("shiny")
+install.packages("shinycssloaders")
+install.packages("shinythemes")
+install.packages("magrittr")
 
 ## call the shiny librarry
 
@@ -749,28 +752,125 @@ rf_model <- randomForest(LoanApproved ~ LoanAmount + MonthlyIncome + InterestRat
                            MonthlyLoanPayment + TotalDebtToIncomeRatio + RiskScore, 
                          data=data_new, ntree=100)
 
+# Load necessary libraries
+library(shiny)
+library(randomForest)
+library(shinycssloaders)  # For loading animations
+library(magrittr)
+library(shinythemes)       # For themes
+
+# Sample data creation (replace this with your actual dataset)
+set.seed(42)  # For reproducibility
+data_new <- data.frame(
+  LoanAmount = runif(100, 10000, 100000),
+  MonthlyIncome = runif(100, 3000, 10000),
+  InterestRate = runif(100, 3, 10),
+  MonthlyLoanPayment = runif(100, 200, 1000),
+  TotalDebtToIncomeRatio = runif(100, 20, 50),
+  RiskScore = sample(600:800, 100, replace = TRUE),
+  LoanApproved = sample(0:1, 100, replace = TRUE)  # Binary outcome
+)
+
+# Train the Random Forest model
+rf_model <- randomForest(LoanApproved ~ LoanAmount + MonthlyIncome + 
+                           InterestRate + MonthlyLoanPayment + 
+                           TotalDebtToIncomeRatio + RiskScore, 
+                         data = data_new, ntree = 100)
+
+# Load necessary libraries
+library(shiny)
+library(randomForest)
+library(shinycssloaders)  # For loading animations
+library(magrittr)
+library(shinythemes)       # For themes
+
+# Sample data creation (replace this with your actual dataset)
+set.seed(42)  # For reproducibility
+data_new <- data.frame(
+  LoanAmount = runif(100, 10000, 100000),
+  MonthlyIncome = runif(100, 3000, 10000),
+  InterestRate = runif(100, 3, 10),
+  MonthlyLoanPayment = runif(100, 200, 1000),
+  TotalDebtToIncomeRatio = runif(100, 20, 50),
+  RiskScore = sample(600:800, 100, replace = TRUE),
+  LoanApproved = sample(0:1, 100, replace = TRUE)  # Binary outcome
+)
+
+# Train the Random Forest model
+rf_model <- randomForest(LoanApproved ~ LoanAmount + MonthlyIncome + 
+                           InterestRate + MonthlyLoanPayment + 
+                           TotalDebtToIncomeRatio + RiskScore, 
+                         data = data_new, ntree = 100)
+
 # Define the User Interface (UI)
 ui <- fluidPage(
   
-  # Application title
-  titlePanel("Loan Approval Prediction"),
+  # Add custom CSS for styling
+  tags$head(tags$style(HTML("
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h3 {
+      color: #007bff;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #e9ecef;
+      text-align: center;
+    }
+    .approved {
+      color: #28a745;  /* Green for approved */
+      font-weight: bold;
+    }
+    .not-approved {
+      color: #dc3545;  /* Red for not approved */
+      font-weight: bold;
+    }
+  "))),
   
-  # Sidebar with input fields
+  # Application title
+  titlePanel("Loan Approval Prediction", windowTitle = "Loan Predictor"),
+  
+  # Sidebar layout
   sidebarLayout(
     sidebarPanel(
-      numericInput("LoanAmount", "Loan Amount:", value ="Pleae Enter the value"),
-      numericInput("MonthlyIncome", "Monthly Income:", value ="Pleae Enter the value" ),
-      numericInput("InterestRate", "Interest Rate (%):", value = "Pleae Enter the value"),
-      numericInput("MonthlyLoanPayment", "Monthly Loan Payment:", value ="Pleae Enter the value"),
-      numericInput("TotalDebtToIncomeRatio", "Debt-to-Income Ratio:", value = "Pleae Enter the value"),
-      numericInput("RiskScore", "Risk Score:", value ="Pleae Enter the value"),
+      class = "container",  # Add class for styling
+      h3("Enter Loan Details"),
+      numericInput("LoanAmount", "Loan Amount:", value = 30000, min = 0),
+      numericInput("MonthlyIncome", "Monthly Income:", value = 7000, min = 0),
+      numericInput("InterestRate", "Interest Rate (%):", value = 5.8, min = 0),
+      numericInput("MonthlyLoanPayment", "Monthly Loan Payment:", value = 400, min = 0),
+      numericInput("TotalDebtToIncomeRatio", "Debt-to-Income Ratio:", value = 35, min = 0),
+      numericInput("RiskScore", "Risk Score:", value = 680, min = 0),
       
-      actionButton("predict", "Predict Approval Status")
+      actionButton("predict", "Predict Approval Status", class = "btn-primary"),
+      br(), br(),  # Add some space
+      helpText("Please enter the required information and click the button.")
     ),
     
-    # Output prediction result
+    # Main panel for output
     mainPanel(
-      textOutput("predictionResult")
+      class = "container",  # Add class for styling
+      h3("Prediction Result"),
+      textOutput("predictionResult") %>% withSpinner(color = "#007bff"),  # Spinner for loading effect
+      br()
     )
   )
 )
@@ -794,20 +894,25 @@ server <- function(input, output) {
     # Make a prediction using the Random Forest model
     prediction <- predict(rf_model, newdata = user_data)
     
-    # Display the prediction result in the main panel
-    output$predictionResult <- renderText({
-      if (prediction == 1) {
-        "Loan is Approved"
-      } else {
-        "Loan is Not Approved"
-      }
-    })
+    # Create modal dialog for displaying prediction result
+    prediction_numeric <- as.numeric(prediction)  # Convert factor to numeric if necessary
+    result_text <- if (prediction_numeric == 1) {
+      list(title = "🎉 Loan is Approved! 🎉", 
+           content = "Congratulations! You are eligible for the loan.")
+    } else {
+      list(title = "❌ Loan is Not Approved ❌", 
+           content = "Unfortunately, you do not meet the criteria for the loan.")
+    }
+    
+    showModal(modalDialog(
+      title = result_text$title,
+      result_text$content,
+      easyClose = TRUE,
+      footer = NULL
+    ))
   })
 }
 
 # Run the application
 shinyApp(ui = ui, server = server)
-
-
-
 
