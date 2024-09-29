@@ -738,4 +738,76 @@ if (sample_predictions[1]==1) {
 }
 
 
+## install the shiny package
+install.packages("shiny")
+
+## call the shiny librarry
+
+library("shiny")
+
+rf_model <- randomForest(LoanApproved ~ LoanAmount + MonthlyIncome + InterestRate + 
+                           MonthlyLoanPayment + TotalDebtToIncomeRatio + RiskScore, 
+                         data=data_new, ntree=100)
+
+# Define the User Interface (UI)
+ui <- fluidPage(
+  
+  # Application title
+  titlePanel("Loan Approval Prediction"),
+  
+  # Sidebar with input fields
+  sidebarLayout(
+    sidebarPanel(
+      numericInput("LoanAmount", "Loan Amount:", value ="Pleae Enter the value"),
+      numericInput("MonthlyIncome", "Monthly Income:", value ="Pleae Enter the value" ),
+      numericInput("InterestRate", "Interest Rate (%):", value = "Pleae Enter the value"),
+      numericInput("MonthlyLoanPayment", "Monthly Loan Payment:", value ="Pleae Enter the value"),
+      numericInput("TotalDebtToIncomeRatio", "Debt-to-Income Ratio:", value = "Pleae Enter the value"),
+      numericInput("RiskScore", "Risk Score:", value ="Pleae Enter the value"),
+      
+      actionButton("predict", "Predict Approval Status")
+    ),
+    
+    # Output prediction result
+    mainPanel(
+      textOutput("predictionResult")
+    )
+  )
+)
+
+# Define the Server logic
+server <- function(input, output) {
+  
+  # Observe when the 'predict' button is pressed
+  observeEvent(input$predict, {
+    
+    # Create a new data frame based on user input
+    user_data <- data.frame(
+      LoanAmount = input$LoanAmount,
+      MonthlyIncome = input$MonthlyIncome,
+      InterestRate = input$InterestRate,
+      MonthlyLoanPayment = input$MonthlyLoanPayment,
+      TotalDebtToIncomeRatio = input$TotalDebtToIncomeRatio,
+      RiskScore = input$RiskScore
+    )
+    
+    # Make a prediction using the Random Forest model
+    prediction <- predict(rf_model, newdata = user_data)
+    
+    # Display the prediction result in the main panel
+    output$predictionResult <- renderText({
+      if (prediction == 1) {
+        "Loan is Approved"
+      } else {
+        "Loan is Not Approved"
+      }
+    })
+  })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+
+
+
 
