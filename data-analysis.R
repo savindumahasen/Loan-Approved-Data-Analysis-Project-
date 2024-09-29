@@ -410,3 +410,290 @@ shapiro.test(RiskScore)
 ## Histogram and bell curve for RiskScore
 hist(RiskScore, main="RiskScore distribution", xlab="RiskScore Category", ylab="RiskScore",prob=TRUE)
 curve(dnorm(x, mean=mean(RiskScore, na.rm = TRUE), sd=sd(RiskScore, na.rm = TRUE)), add=TRUE)
+
+## Install the Rcmdr
+install.packages('Rcmdr')
+
+## Call the library
+library('Rcmdr')
+
+## Correlational Analysis
+cor.test(LoanApproved,Age, method="spearman", alternative="two.sided")
+
+## Scatterplot for LoanApproved vs Age
+
+scatterplot(LoanApproved~Age, regLine=TRUE, smooth=FALSE, boxplots=FALSE, 
+           xlab="Age", ylab="LoanApproved", main="LoanApproved vs Age Scatterplot", 
+          data=data_new)
+
+cor.test(LoanApproved, AnnualIncome, method = "spearman", alternative="two.sided")
+
+## scatteplot for LoanApproved VS AnnualIncome
+
+scatterplot(LoanApproved~AnnualIncome, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="AnnualIncome", ylab="LoanApproved", 
+            main="LoanApproved vs AnnualIncome  Scatterplot", data=data_new)
+
+## Scatterplot for LoanApproved Vs CreditScore
+cor.test(LoanApproved, CreditScore, method="spearman", alternative="two.sided")
+
+## scatterplot for LoanApproved Vs CreditScore
+
+scatterplot(LoanApproved~CreditScore, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="CreditScore", ylab="LoanApproved", 
+            main="LoanApproved vs CreditScore  Scatterplot", data=data_new)
+
+cor.test(LoanApproved, EmploymentStatus, method="spearman", alternative="two.sided")
+
+## scatterplot for LoanApproved Vs EmploymentStatus
+
+scatterplot(LoanApproved~EmploymentStatus, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="EmploymentStatus", ylab="LoanApproved", 
+            main="LoanApproved vs EmploymentStatus  Scatterplot", data=data_new)
+
+cor.test(LoanApproved, EducationLevel, method="spearman", alternative="two.sided")
+
+
+## scatterplot for LoanApproved Vs EducationLevel
+
+scatterplot(LoanApproved~EducationLevel, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="EducationLevel", ylab="LoanAprroved", 
+            main="EducationLevel Vs LoanAprroved Scatterplot", data=data_new)
+
+cor.test(LoanApproved, Experience, method="spearman", alternative="two.sided")
+
+## scatterplot for LoanApproved Vs Experience
+
+scatterplot(LoanApproved~Experience, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="Experience", ylab="LoanApproved", 
+            main="LoanApproved Vs Experience Scatterplot", data=data_new)
+
+cor.test(LoanApproved, LoanAmount, method = "spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs LoanAmount
+
+scatterplot(LoanApproved~LoanAmount, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="LoanAmount", ylab="LoanApproved", 
+            main="LoanApproved Vs LoanAmount Scatterplot", data=data_new)
+
+cor.test(LoanApproved, LoanDuration, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs LoanDuration
+
+scatterplot(LoanApproved~LoanDuration, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="LoanDuration", ylab="LoanApproved", 
+            main="LoanApproved Vs LoanDuration Scatterplot", data=data_new)
+
+cor.test(LoanApproved, MaritalStatus, method="spearman", alternative ="two.sided")
+
+## scatterplot for LoanApproved Vs MaritalStatus
+scatterplot(LoanApproved~MaritalStatus, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="MaritalStatus", ylab="LoanApproved", 
+            main="LoanApproved Vs MaritalStatus Scatterplot", data=data_new)
+
+cor.test(LoanApproved, NumberOfDependents, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs NumberOfDependents
+scatterplot(LoanApproved~NumberOfDependents, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="NumberOfDependents", ylab="LoanApproved", 
+            main="LoanApproved Vs NumberOfDependents Scatterplot", data=data_new)
+
+cor.test(LoanApproved,HomeOwnershipStatus, method="spearman", alternative="two.sided")
+
+## scatterplot for LoanApproved Vs HomeOwnershipStatus
+
+scatterplot(LoanApproved~HomeOwnershipStatus, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="HomeOwnershipStatus", ylab="LoanApproved", 
+            main="LoanApproved Vs HomeOwnershipStatus Scatterplot", data=data_new)
+
+cor.test(LoanApproved,MonthlyDebtPayments, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs MonthlyDebtPayments
+
+scatterplot(LoanApproved~MonthlyDebtPayments, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="MonthlyDebtPayments", ylab="LoanApproved", 
+            main="LoanApproved Vs MonthlyDebtPayments Scatterplot", data=data_new)
+
+cor.test(LoanApproved, CreditCardUtilizationRate, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs CreditCardUtilizationRate
+
+scatterplot(LoanApproved~CreditCardUtilizationRate, regLine=TRUE, 
+            smooth=FALSE, boxplots=FALSE, xlab="CreditCardUtilizationRate", 
+            ylab="LoanApproved", 
+            main="LoanApproved Vs CreditCardUtilizationRate Scatterplot", data=data_new)
+
+cor.test(LoanApproved,NumberOfOpenCreditLines, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs NumberOfOpenCreditLines
+
+scatterplot(LoanApproved~NumberOfOpenCreditLines, regLine=TRUE, 
+            smooth=FALSE, boxplots=FALSE, xlab="NumberOfOpenCreditLines", 
+            ylab="LoanApproved", main="LoanApproved Vs NumberOfCreditLines Scatterplot",
+            data=data_new)
+
+cor.test(LoanApproved, NumberOfCreditInquiries, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs NumberOfCreditInquiries
+
+scatterplot(LoanApproved~NumberOfCreditInquiries, regLine=TRUE, 
+            smooth=FALSE, boxplots=FALSE, xlab="NumberOfCreditInquiries", 
+            ylab="LoanApproved", 
+            main="LoanApproved Vs NumberOfCreditInquiries Scatterplot", data=data_new)
+
+cor.test(LoanApproved, DebtToIncomeRatio, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs DebtToIncomeRatio
+
+scatterplot(LoanApproved~DebtToIncomeRatio, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="DebtToIncomeRatio", ylab="LoanApproved", 
+            main="LoanApproved Vs DebtToIncomeRatio Scatterplot", data=data_new)
+
+cor.test(LoanApproved,BankruptcyHistory, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs BankruptcyHistory
+
+scatterplot(LoanApproved~BankruptcyHistory, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="BankruptcyHistory", ylab="LoanApproved", 
+            main="LoanApproved Vs BankruptcyHistory Scatterplot", data=data_new)
+
+cor.test(LoanApproved, LoanPurpose, method = "spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs LoanPurpose
+
+scatterplot(LoanApproved~LoanPurpose, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="LoanPurpose", ylab="LoanApproved", 
+            main="LoanApproved Vs LoanPurpose Scatterplot", data=data_new)
+
+cor.test(LoanApproved, PreviousLoanDefaults, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs PreviousLoanDefaults
+
+scatterplot(LoanApproved~PreviousLoanDefaults, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="PreviousLoanDefaults", ylab="LoanApproved", 
+            main="LoanApproved Vs PreviousLoanDefaults Scatterplot", data=data_new)
+
+cor.test(LoanApproved, PaymentHistory, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs PaymentHistory
+
+scatterplot(LoanApproved~PaymentHistory, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="PaymentHistory", ylab="LoanApproved", 
+            main="LoanApproved Vs PaymentHistory Scatterplot", data=data_new)
+
+cor.test(LoanApproved,LengthOfCreditHistory, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs LengthOfCreditHistory
+
+scatterplot(LoanApproved~LengthOfCreditHistory, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="LengthOfCreditHistory", ylab="LoanApproved", 
+            main="LoanApproved Vs LengthOfCreditHistory Scatterplot", data=data_new)
+
+cor.test(LoanApproved,SavingsAccountBalance, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs SavingsAccountBalance
+
+scatterplot(LoanApproved~SavingsAccountBalance, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="SavingsAccountBalance", ylab="LoanApproved", 
+            main="LoanApproved Vs SavingsAccountBalance Scatterplot", data=data_new)
+
+cor.test(LoanApproved, CheckingAccountBalance, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs CheckingAccountBalance
+
+scatterplot(LoanApproved~CheckingAccountBalance, regLine=TRUE, smooth=FALSE,
+            boxplots=FALSE, xlab="CheckingAccountBalance", ylab="LoanApproved", 
+            main="LoanApproved Vs CheckingAccountBalance Scatterplot", data=data_new)
+
+cor.test(LoanApproved, TotalAssets, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs TotalAssets
+
+scatterplot(LoanApproved~TotalAssets, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="Total Assets", ylab="LoanApproved", 
+            main="LoanApproved Vs TotalAssets Scatterplot", data=data_new)
+
+cor.test(LoanApproved,TotalLiabilities, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs TotalLiabilities
+
+scatterplot(LoanApproved~TotalLiabilities, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="TotalLiabilities", ylab="LoanApproved", 
+            main="LoanApproved Vs TotalLiabilities Scatterplot", data=data_new)
+
+cor.test(LoanApproved, MonthlyIncome, method = "spearman", alternative="two.sided")
+
+## scatterplot for LoanApproved Vs MonthlyIncome
+
+scatterplot(LoanApproved~MonthlyIncome, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="MonthlyIncome", ylab="LoanApproved", 
+            main="LoanApproved Vs MonthlyIncome Scatterplot", data=data_new)
+
+cor.test(LoanApproved, UtilityBillsPaymentHistory, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs UtilitiyBillsPaymentHistory
+
+scatterplot(LoanApproved~UtilityBillsPaymentHistory, regLine=TRUE, 
+            smooth=FALSE, boxplots=FALSE, xlab="UtilityBillsPaymentHistory", 
+            ylab="LoanApproved", 
+            main="LoanApproved Vs UtilityBillsPaymentHistory Scatterplot", 
+            data=data_new)
+
+cor.test(LoanApproved, JobTenure, method="spearman", alternative="two.sided")
+
+## scatterplot for LoanApproved Vs JobTenture
+
+scatterplot(LoanApproved~JobTenure, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="JonTenture", ylab="LoanApproved", 
+            main="LoanApproved Vs JonTenture Scatterplot", data=data_new)
+
+cor.test(LoanApproved, NetWorth, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs Networth
+
+scatterplot(LoanApproved~NetWorth, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="Networth", ylab="LoanApproved", 
+            main="LoanApproved Vs Networth Scatterplot", data=data_new)
+
+cor.test(LoanApproved, BaseInterestRate, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs BaseInterestRate
+
+scatterplot(LoanApproved~BaseInterestRate, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="BaseInterestRate", ylab="LoanApproved", 
+            main="LoanApproved Vs BaseInterestRate Scatterplot", data=data_new)
+
+cor.test(LoanApproved, InterestRate, method="spearman", alternative="two.sided")
+
+## scatterplot for LoanApproved Vs InterestRate
+
+scatterplot(LoanApproved~InterestRate, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="InterestRate", ylab="LoanApproved", 
+            main="LoanApproved Vs InterestRate Scatterplot", data=data_new)
+
+cor.test(LoanApproved, MonthlyLoanPayment, method="spearman", alternative="two.sided")
+
+## scatterplot for LoanAprroved Vs MonthlyLoadPayment
+
+scatterplot(LoanApproved~MonthlyLoanPayment, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="MonthlyLoanPayment", ylab="LoanApproved", 
+            main="LoanApproved Vs MonthlyLoanPayment  Scatterplot", data=data_new)
+
+cor.test(LoanApproved,TotalDebtToIncomeRatio, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs TotalDebtToIncomeRatio
+
+scatterplot(LoanApproved~TotalDebtToIncomeRatio, regLine=TRUE, smooth=FALSE,
+            boxplots=FALSE, xlab="TotalDebtToIncomeRatio", ylab="LoanApproved", 
+            main="LoanApproved Vs TotalDebtToIncomeRatio  Scatterplot", data=data_new)
+
+cor.test(LoanApproved, RiskScore, method="spearman", alternative = "two.sided")
+
+## scatterplot for LoanApproved Vs RiskScore
+
+scatterplot(LoanApproved~RiskScore, regLine=TRUE, smooth=FALSE, 
+            boxplots=FALSE, xlab="RiskScore", ylab="LoanApproved", 
+            main="LoanApproved Vs RiskScore  Scatterplot", data=data_new)
+
+
+
