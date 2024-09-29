@@ -733,10 +733,11 @@ sample_data <- data.frame(
 
 # Make predictions on the sample data
 sample_predictions <- predict(rf_model, newdata=sample_data)
+sample_predictions
 if (sample_predictions[1]==1) {
-  print("1")
+  print("Loan Approved")
 } else {
-  print("0")
+  print("Loan Not Approved")
 }
 
 
