@@ -354,7 +354,6 @@ curve(dnorm(x, mean=mean(JobTenure, na.rm=TRUE), sd=sd(JobTenure, na.rm=TRUE)), 
 
 
 ##  NetWorth
-
 ad.test(NetWorth)
 lillie.test(NetWorth)
 shapiro.test(NetWorth)
@@ -402,7 +401,6 @@ curve(dnorm(x, mean=mean(TotalDebtToIncomeRatio, na.rm = TRUE), sd=sd(TotalDebtT
 
 
 ## RiskScore
-
 ad.test(RiskScore)
 lillie.test(RiskScore)
 shapiro.test(RiskScore)
